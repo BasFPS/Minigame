@@ -1,0 +1,10 @@
+name: Minigame
+version: '${project.version}'
+main: me.basfps.minigame.Minigame
+api-version: 1.19
+authors: [ basfps ]
+description: Minigame plugin
+commands:
+  start:
+  join:
+  leave:

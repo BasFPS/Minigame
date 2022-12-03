@@ -1,0 +1,7 @@
+me\basfps\minigame\Game.class
+me\basfps\minigame\LobbyPhase.class
+me\basfps\minigame\commands\JoinCommand$1.class
+me\basfps\minigame\listeners\BlockPointsListener.class
+me\basfps\minigame\commands\StartCommand.class
+me\basfps\minigame\commands\LeaveCommand.class
+me\basfps\minigame\commands\JoinCommand.class
