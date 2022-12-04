@@ -32,8 +32,16 @@ public class Game {
 
     public void gameEnd(UUID u) {
 
+
         manager.sendGameMessage(ChatColor.GREEN + "" + Bukkit.getPlayer(u).getName() + " HAS WON THE GAME!");
+        for (UUID uuid : manager.gamePlayers) {
+            if (uuid != u) {
+                Bukkit.getPlayer(uuid).sendTitle(ChatColor.RED + "YOU LOST!", "", 10, 55, 10);
+            }
+        }
+        Bukkit.getPlayer(u).sendTitle(ChatColor.GOLD + "YOU WON THE GAME!", "", 5, 55, 5);
         manager.setGameState(GameState.LOBBY);
+        Bukkit.getPlayer(u).playSound(Bukkit.getPlayer(u).getLocation(), Sound.BLOCK_NOTE_BLOCK_BELL, 2.0f, 1.0f);
 
 
     }

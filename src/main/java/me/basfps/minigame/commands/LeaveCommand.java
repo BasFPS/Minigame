@@ -6,6 +6,7 @@ import me.basfps.minigame.GameState;
 import me.basfps.minigame.Minigame;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.Location;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -31,11 +32,12 @@ public class LeaveCommand implements CommandExecutor {
                 manager.gamePlayers.remove(p.getUniqueId());
                 sender.sendMessage(ChatColor.GREEN + "You have been removed from the game");
                 manager.sendGameMessage(ChatColor.RED + p.getName() + " has left the game!");
+                manager.teleportGamePlayers(new Location(Bukkit.getWorld("world"), 25, 100, 25));
 
                 if ((manager.gamePlayers.size() < 1) && (manager.getGameState() == GameState.STARTING || manager.getGameState() == GameState.IN_GAME)) {
-                    Bukkit.broadcastMessage(ChatColor.RED + "Countdown stopped due to a player leaving!");
-
+                    Bukkit.broadcastMessage(ChatColor.RED + "Game stopped due to a player leaving!");
                     manager.setGameState(GameState.LOBBY);
+
 
                 }
             } else {

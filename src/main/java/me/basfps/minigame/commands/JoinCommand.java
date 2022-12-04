@@ -51,15 +51,6 @@ public class JoinCommand implements CommandExecutor {
 
             }
 
-
-
-
-
-
-
-
-
-
         } else {
             sender.sendMessage("You are not a player");
         }

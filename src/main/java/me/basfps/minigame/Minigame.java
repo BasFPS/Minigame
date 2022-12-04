@@ -4,6 +4,7 @@ import me.basfps.minigame.commands.JoinCommand;
 import me.basfps.minigame.commands.LeaveCommand;
 import me.basfps.minigame.commands.StartCommand;
 import me.basfps.minigame.listeners.BlockPointsListener;
+import me.basfps.minigame.listeners.PlayerDisconnect;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.logging.Level;
@@ -21,6 +22,7 @@ public class Minigame extends JavaPlugin {
         getCommand("leave").setExecutor(new LeaveCommand(this, manager));
         getCommand("join").setExecutor(new JoinCommand(this, manager));
         getServer().getPluginManager().registerEvents(new BlockPointsListener(this, manager, manager.game), this);
+        getServer().getPluginManager().registerEvents(new PlayerDisconnect(this, manager), this);
 
         logger.log(Level.INFO, "\u001B[32m [MINIGAME] Plugin is enabled! \u001B[0m");
 

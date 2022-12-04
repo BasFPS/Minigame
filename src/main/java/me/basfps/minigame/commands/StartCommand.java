@@ -11,7 +11,7 @@ import org.bukkit.command.CommandSender;
 public class StartCommand implements CommandExecutor {
 
     private Minigame plugin;
-    private GameManager manager;
+    private  GameManager manager;
 
    public StartCommand(Minigame plugin, GameManager manager) {
        this.plugin = plugin;
@@ -27,9 +27,13 @@ public class StartCommand implements CommandExecutor {
 
 
         if (manager.gamePlayers.size() > 0) {
+            if ( manager.getGameState() != GameState.STARTING && manager.getGameState() != GameState.IN_GAME) {
+                sender.sendMessage(ChatColor.GREEN + "Game countdown has started");
+                manager.setGameState(GameState.STARTING);
+            } else {
+                sender.sendMessage(ChatColor.RED + "There is already a game in progress");
+            }
 
-            sender.sendMessage(ChatColor.GREEN + "Game countdown has started");
-            manager.setGameState(GameState.STARTING);
 
         } else {
             sender.sendMessage(ChatColor.RED + "Not enough players!");

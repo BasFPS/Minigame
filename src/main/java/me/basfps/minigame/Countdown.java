@@ -32,20 +32,30 @@ public class Countdown {
                     if (manager.getGameState() == GameState.STARTING) {
                         manager.sendTitleMessage(ChatColor.GREEN + "Game starting in " + counter + " seconds", 5, 20, 5);
                         manager.sendGameSound(Sound.UI_BUTTON_CLICK);
+
                     } else {
-                        manager.setGameState(GameState.LOBBY);
                         cancel();
+                        manager.setGameState(GameState.LOBBY);
+
                     }
-
-
                     counter--;
 
                 } else {
-                    manager.teleportGamePlayers(new Location(Bukkit.getWorld("world"), 10, 100, 10));
-                    manager.sendTitleMessage(ChatColor.GREEN + "BEGIN", 15, 55, 15);
-                    manager.sendGameSound(Sound.ENTITY_ENDER_DRAGON_GROWL);
-                    manager.setGameState(GameState.IN_GAME);
-                    cancel();
+                    if (manager.getGameState() == GameState.LOBBY) {
+                        cancel();
+                        manager.setGameState(GameState.LOBBY);
+
+                    } else {
+
+                        manager.setRandomSpawns();
+                        manager.teleportGamePlayersRandomly();
+
+                        manager.sendTitleMessage(ChatColor.GREEN + "BEGIN", 15, 55, 15);
+                        manager.sendGameSound(Sound.ENTITY_ENDER_DRAGON_GROWL);
+                        manager.setGameState(GameState.IN_GAME);
+
+                        cancel();
+                    }
 
 
 
